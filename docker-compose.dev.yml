@@ -1,0 +1,23 @@
+services:
+    client:
+            build: ./client
+            ports: 
+                - 8080:3000
+            command: npm start
+            volumes: 
+                - ./client/src/:/app/src/
+            env_file:
+                - ./global.env
+    server:
+            build: ./server
+            ports: 
+                - 5050:5000
+            command: npm run dev
+            volumes: 
+                - ./server/src/:/app/src/
+            env_file:
+               - ./global.env
+    mongodb:
+        image: mongo
+        volumes: 
+            - ./data:/data/db
